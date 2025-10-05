@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FRANCE ISOLATION — Isolation Thermique Extérieure, Aides & Étude Gratuite</title>
+    <meta name="description" content="Isolation Thermique par l'Extérieur (ITE) : réduisez vos factures, gagnez en confort et valorisez votre bien. Demandez une étude gratuite." />
+    <style>
+        /* ================= Palette naturelle, sobre ================= */
+        :root{
+            --bg:#f7f6f2; --surface:#ffffff; --card:#f3f2ea; --border:#d9d6c9;
+            --text:#2f3e35; --muted:#5e6f63; --brand:#6ea27a; --brand-dark:#4f7b58;
+            --accent:#d9b97a; --radius:16px; --shadow:0 8px 22px rgba(0,0,0,.06);
+            --container:1040px; --error:#b42318; --ok:#1b7a50;
+        }
+        *,*::before,*::after{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 "Segoe UI", Roboto, Arial, sans-serif}
+        img{display:block;max-width:100%;height:auto}
+        a{color:inherit;text-decoration:none}
+
+        .container{width:min(100%,var(--container));margin-inline:auto;padding:0 clamp(16px,4vw,28px)}
+        .section{padding:clamp(40px,7vw,84px) 0}
+
+        /* ================= Header ================= */
+        .topbar{background:var(--surface);border-bottom:1px solid var(--border)}
+        .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+        .brand{display:flex;align-items:center;gap:10px}
+        .brand img{height:28px}
+        .brand-name{font-weight:700;letter-spacing:.2px}
+        .links{display:flex;gap:16px}
+        .links a{color:var(--muted);font-weight:500}
+
+        /* ================= Hero ================= */
+        .hero{background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}
+        .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:clamp(22px,4vw,36px)}
+        @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-img{order:-1}}
+        .kicker{color:var(--brand-dark);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.9rem}
+        h1{font-size:clamp(1.9rem,2.2vw + 1.2rem,2.7rem);line-height:1.15;margin:10px 0 8px}
+        .lead{color:var(--muted);margin:0}
+        .hero-img img{width:100%;max-width:420px;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,.08);margin-inline:auto}
+
+        .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.85rem 1.1rem;border-radius:12px;font-weight:700;border:0;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-dark));box-shadow:0 6px 14px rgba(0,0,0,.1);cursor:pointer}
+        .btn.secondary{background:#fff;color:var(--brand);border:1px solid var(--border);box-shadow:none}
+        .btn.ghost{background:#fff;color:var(--brand-dark);border:1px solid var(--border)}
+        .btn[disabled]{opacity:.7;cursor:not-allowed}
+        .spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        /* ================= Avantages ================= */
+        .advantages{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:22px}
+        .adv{background:linear-gradient(160deg,#fff,#f7f8f4);border:1px solid var(--border);border-radius:18px;padding:22px;text-align:center;box-shadow:var(--shadow);transition:transform .25s, box-shadow .25s}
+        .adv:hover{transform:translateY(-6px);box-shadow:0 12px 26px rgba(0,0,0,.08)}
+        .adv .ico{height:64px;width:64px;margin:0 auto 10px;display:grid;place-items:center;border-radius:50%;background:var(--brand)}
+        .adv svg{width:30px;height:30px;fill:#fff}
+        .adv h3{margin:6px 0 8px;font-size:1.12rem;color:var(--brand-dark)}
+        .adv p{margin:0;color:var(--muted);font-size:.95rem}
+
+        /* ================= Aides ================= */
+        .aides{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
+        .aide{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow);transition:transform .2s}
+        .aide:hover{transform:translateY(-4px)}
+        .aide .icon{font-size:1.8rem;margin-bottom:6px}
+        .aide strong{color:var(--brand-dark)}
+        .aide p{margin:6px 0 0;color:var(--muted);font-size:.95rem}
+
+        /* ================= Form 2 étapes ================= */
+        .formwrap{background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+        .form-header{padding:22px 20px 6px;text-align:center}
+        .form-header .badge{display:inline-block;background:var(--card);border:1px solid var(--border);color:var(--brand-dark);padding:.35rem .6rem;border-radius:999px;font-weight:700;font-size:.85rem}
+        .form-shell{padding:20px}
+        form#contactForm{display:grid;gap:16px;max-width:720px;margin:auto}
+        .stepper{display:flex;gap:12px;justify-content:center;margin:4px 0 14px}
+        .bubble{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border);background:#fff;color:var(--muted);font-weight:700}
+        .bubble.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+        .bubble.done{background:var(--brand-dark);color:#fff;border-color:var(--brand-dark)}
+        .step-title{text-align:center;margin:-2px 0 8px;color:var(--brand-dark);font-weight:700}
+
+        .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+        @media(max-width:740px){.form-grid{grid-template-columns:1fr}}
+        .field{display:flex;flex-direction:column;gap:6px}
+        .field label{color:var(--muted);font-weight:600}
+        .req{color:#c0392b;margin-left:4px}
+        .input{background:#fff;border:1px solid var(--border);padding:.85rem 1rem;border-radius:12px;transition:border-color .15s, box-shadow .15s}
+        .input:focus{outline:none;border-color:#7eae88;box-shadow:0 0 0 4px rgba(110,162,122,.18)}
+        .input::placeholder{color:#9aa3a0}
+        .hint{font-size:.85rem;color:var(--muted)}
+        .error{font-size:.85rem;color:var(--error);display:none}
+        .invalid .error{display:block}
+        .invalid .input{border-color:var(--error);box-shadow:0 0 0 3px rgba(180,35,24,.08)}
+        .checkbox-card{display:flex;gap:.65rem;align-items:flex-start;background:var(--card);border:1px solid var(--border);padding:.8rem 1rem;border-radius:12px}
+        .full{grid-column:1/-1}
+        .actions{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:8px}
+        @media(max-width:740px){.actions{justify-content:stretch}}
+
+        .success{display:none;max-width:720px;margin:0 auto 12px;background:#f0f6f2;border:1px solid #cfe3d2;border-radius:14px;padding:18px}
+        .success.show{display:block}
+        .success h3{margin:0 0 6px;color:var(--ok)}
+        .success p{margin:0;color:#2c4638}
+
+        /* ================= Footer ================= */
+        footer{border-top:1px solid var(--border);background:var(--surface);color:var(--muted);padding:26px 0}
+        footer a{text-decoration:underline;text-underline-offset:2px;color:var(--brand)}
+    </style>
+</head>
+<body>
+<!-- ================= Header ================= -->
+<div class="topbar">
+    <div class="container nav">
+        <div class="brand">
+            <img src="images/france-isolation-logo.jpg" alt="FRANCE ISOLATION" />
+            <span class="brand-name">FRANCE ISOLATION</span>
+        </div>
+        <div class="links">
+            <a href="#aides">Aides</a>
+            <a href="#formulaire-detaille">Étude gratuite</a>
+        </div>
+    </div>
+</div>
+
+<!-- ================= Hero ================= -->
+<header class="section hero" id="accueil" aria-label="Isolation par l'extérieur">
+    <div class="hero-inner container">
+        <div class="hero-text">
+            <p class="kicker">Isolation Thermique par l’Extérieur</p>
+            <h1>Réduisez vos factures et améliorez votre confort</h1>
+            <p class="lead">ITE : façade rénovée, confort immédiat et subventions possibles selon votre situation. Nous gérons vos démarches d’aides.</p>
+
+            <div class="advantages">
+                <article class="adv" aria-label="Économie d’énergie">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M19.5 3C12 3 6 9 6 16.5V21l4.5-1.5C18 19.5 24 13.5 24 6c-2.25 0-3.75.75-4.5 1.5C18 6 18.75 4.5 19.5 3Z"/></svg></div>
+                    <h3>Économie d’énergie</h3>
+                    <p>Factures de chauffage/clim en baisse grâce à une enveloppe performante.</p>
+                </article>
+                <article class="adv" aria-label="Confort thermique">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 14.76V5a3 3 0 1 0-6 0v9.76a5 5 0 1 0 6 0ZM10 5a1 1 0 1 1 2 0v10.41l.3.24a3 3 0 1 1-2.6 0l.3-.24V5Z"/></svg></div>
+                    <h3>Confort thermique</h3>
+                    <p>Température intérieure stable été comme hiver, moins de parois froides.</p>
+                </article>
+                <article class="adv" aria-label="Façade rénovée & esthétique">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h14a2 2 0 0 1 2 2v2H9v3h6a2 2 0 0 1 2 2v7h-3v-6H9V8H3V6a2 2 0 0 1 2-2Z"/></svg></div>
+                    <h3>Façade rénovée & esthétique</h3>
+                    <p>Aspect modernisé et finitions durables qui valorisent votre maison.</p>
+                </article>
+                <article class="adv" aria-label="Valorisation du bien">
+                    <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3h2v16h16v2H3V3Zm16 4-5.5 5.5-3-3L6 14l1.5 1.5 3-3 3 3L21 9V7Z"/></svg></div>
+                    <h3>Valorisation du bien</h3>
+                    <p>Plus-value immobilière potentielle grâce à une isolation de qualité.</p>
+                </article>
+            </div>
+
+            <div class="cta">
+                <a href="#formulaire-detaille" class="btn">Simuler mon aide</a>
+                <a href="#aides" class="btn secondary">Voir les aides</a>
+            </div>
+        </div>
+
+        <div class="hero-img">
+            <img src="images/promo-froid.jpg" alt="Le froid arrive : isolez et bénéficiez d'aides" loading="lazy" decoding="async" />
+        </div>
+    </div>
+</header>
+
+<!-- ================= Aides ================= -->
+<section class="section" id="aides">
+    <div class="container">
+        <h2>Financer votre ITE avec les aides publiques</h2>
+        <p class="lead" style="color:var(--muted)">Nous constituons votre dossier pour maximiser vos subventions et réduire le reste à charge.</p>
+        <div class="aides">
+            <div class="aide"><div class="icon">💶</div><strong>MaPrimeRénov'</strong><p>Aide nationale pour la rénovation énergétique.</p></div>
+            <div class="aide"><div class="icon">🏡</div><strong>Sérénité</strong><p>Dispositif pour ménages modestes et très modestes.</p></div>
+            <div class="aide"><div class="icon">⚡</div><strong>CEE</strong><p>Primes des fournisseurs d’énergie.</p></div>
+            <div class="aide"><div class="icon">📑</div><strong>ANAH</strong><p>Programmes dédiés à l’habitat privé.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= Formulaire (2 étapes) ================= -->
+<section class="section" id="formulaire-detaille" aria-label="Formulaire de contact">
+    <div class="container formwrap">
+        <div class="form-header">
+            <span class="badge">Étude gratuite & sans engagement</span>
+            <h2>Obtenir mon étude personnalisée</h2>
+            <p class="lead" style="color:var(--muted)">Un conseiller vous rappelle pour estimer vos aides et proposer une solution ITE sur-mesure.</p>
+        </div>
+
+        <div class="form-shell">
+            <div id="successPanel" class="success" role="status" aria-live="polite">
+                <h3>✅ Demande envoyée</h3>
+                <p>Merci ! Nous vous recontactons très vite.
+
+                </p>
+            </div>
+
+            <div class="stepper" aria-hidden="true">
+                <div class="bubble active" data-step-bubble>1</div>
+                <div class="bubble" data-step-bubble>2</div>
+            </div>
+            <div class="step-title" id="stepTitle">Étape 1 sur 2 — Coordonnées</div>
+
+            <form id="contactForm" novalidate>
+                <!-- Honeypot anti-spam -->
+                <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+
+                <!-- Étape 1 -->
+                <div class="step" data-step="1">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="prenom">Prénom <span class="req">*</span></label>
+                            <input class="input" id="prenom" name="prenom" autocomplete="given-name" placeholder="Ex : Marie" required>
+                            <small class="error">Veuillez indiquer votre prénom.</small>
+                        </div>
+                        <div class="field">
+                            <label for="nom">Nom <span class="req">*</span></label>
+                            <input class="input" id="nom" name="nom" autocomplete="family-name" placeholder="Ex : Dupont" required>
+                            <small class="error">Veuillez indiquer votre nom.</small>
+                        </div>
+                        <div class="field">
+                            <label for="telephone">Téléphone <span class="req">*</span></label>
+                            <input class="input" id="telephone" name="telephone" inputmode="tel" placeholder="06 12 34 56 78" data-validate="tel" required>
+                            <small class="hint">Format : 10 chiffres. Espaces/points/tirets acceptés.</small>
+                            <small class="error">Numéro invalide.</small>
+                        </div>
+                        <div class="field">
+                            <label for="email">E-mail <span class="req">*</span></label>
+                            <input class="input" id="email" name="email" type="email" placeholder="exemple@mail.com" required>
+                            <small class="error">Adresse e-mail invalide.</small>
+                        </div>
+                    </div>
+                    <!-- Actions Étape 1 -->
+                    <div class="actions">
+                        <button type="button" class="btn" id="nextBtn">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Étape 2 -->
+                <div class="step" data-step="2" hidden>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="code_postal_full">Code postal <span class="req">*</span></label>
+                            <input class="input" id="code_postal_full" name="code_postal_full" inputmode="numeric" pattern="^[0-9]{5}$" maxlength="5" placeholder="75001" required>
+                            <small class="error">Code postal à 5 chiffres requis.</small>
+                        </div>
+                        <div class="field">
+                            <label for="type_chauffage">Type de chauffage <span class="req">*</span></label>
+                            <input class="input" id="type_chauffage" name="type_chauffage" placeholder="Gaz, Électrique, Fioul…" required>
+                            <small class="error">Veuillez indiquer votre chauffage actuel.</small>
+                        </div>
+                        <div class="field full checkbox-card">
+                            <input type="checkbox" id="owner" name="owner" required>
+                            <label for="owner">Je certifie être propriétaire d'une maison individuelle. <span class="req">*</span></label>
+                        </div>
+                        <div class="field full checkbox-card">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label for="consent">J'accepte d'être recontacté(e) pour une étude gratuite. <span class="req">*</span></label>
+                        </div>
+                    </div>
+                    <!-- Actions Étape 2 -->
+                    <div class="actions">
+                        <button type="button" class="btn ghost" id="prevBtn2">← Retour</button>
+                        <button type="submit" class="btn" id="submitBtn">
+                            <span class="btn-label">Envoyer la demande</span>
+                            <span class="spinner" style="display:none" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <p class="hint" style="text-align:center;margin:6px 0 2px">
+                    Vos informations sont utilisées uniquement pour vous recontacter et établir votre étude.
+                    <a href="#" style="color:var(--brand);text-decoration:underline">Politique de confidentialité</a>.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ================= Footer ================= -->
+<footer role="contentinfo">
+    <div class="container">
+        <p>Zones : 95, 78, 77, 91, 94, 93, 27, 28, 60, 02, 51</p>
+        <p>© 2024 FRANCE ISOLATION — <a href="mentions-legales.html">Mentions légales</a> • <a href="politique-confidentialite.html">Politique de confidentialité</a></p>
+    </div>
+</footer>
+
+<script>
+    /* Remplacez par votre URL de déploiement Apps Script si besoin */
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyY9ZLFDoGs4gQdQcfUk5gJVUbUgQnWqYGE8WgNT5CGz3yxvGSwCfOWzhePnp7uiFmJ/exec";
+
+    // Éléments
+    const form = document.getElementById('contactForm');
+    const steps = Array.from(document.querySelectorAll('.step'));
+    const bubbles = Array.from(document.querySelectorAll('.stepper .bubble'));
+    const title = document.getElementById('stepTitle');
+    const successPanel = document.getElementById('successPanel');
+
+    const nextBtn  = document.getElementById('nextBtn');
+    const prevBtn2 = document.getElementById('prevBtn2');
+    const submitBtn = document.getElementById('submitBtn');
+    const spinner   = submitBtn.querySelector('.spinner');
+
+    let current = 0;
+
+    function showStep(i){
+        steps.forEach((s, idx)=> s.hidden = idx !== i);
+        bubbles.forEach((b, idx)=>{
+            b.classList.toggle('active', idx === i);
+            b.classList.toggle('done',   idx <  i);
+        });
+        title.textContent = (i === 0) ? "Étape 1 sur 2 — Coordonnées" : "Étape 2 sur 2 — Projet & consentement";
+        current = i;
+        form.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function fieldValid(el){
+        const v = (el.value || '').trim();
+        if (el.type === 'checkbox') return el.checked;
+
+        // Téléphone FR: 0X + 8 autres chiffres (10 total), espaces/.- permis
+        if (el.dataset.validate === 'tel'){
+            const digits = v.replace(/\D/g, '');
+            return /^0[1-9]\d{8}$/.test(digits);
+        }
+        if (el.type === 'email'){
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        }
+        return v.length > 0;
+    }
+
+    function validateStep(i){
+        const container = steps[i];
+        const inputs = Array.from(container.querySelectorAll('input[required]'));
+        let ok = true;
+        inputs.forEach(el=>{
+            const valid = fieldValid(el);
+            const wrap = el.closest('.field') || el.closest('.checkbox-card');
+            if (wrap) wrap.classList.toggle('invalid', !valid);
+            el.setAttribute('aria-invalid', String(!valid));
+            if (!valid && ok){ el.focus(); ok = false; }
+        });
+        return ok;
+    }
+
+    // Feedback live
+    document.querySelectorAll('#contactForm input').forEach(el=>{
+        ['input','blur'].forEach(evt=>{
+            el.addEventListener(evt, ()=>{
+                const valid = fieldValid(el);
+                const wrap = el.closest('.field') || el.closest('.checkbox-card');
+                if (wrap) wrap.classList.toggle('invalid', !valid);
+                el.setAttribute('aria-invalid', String(!valid));
+            });
+        });
+    });
+
+    // Navigation
+    nextBtn.addEventListener('click', ()=>{ if (validateStep(0)) showStep(1); });
+    prevBtn2.addEventListener('click', ()=> showStep(0));
+
+    // Entrée dans l’étape 1 => passer à l’étape 2
+    steps[0].addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter'){
+            e.preventDefault();
+            if (validateStep(0)) showStep(1);
+        }
+    });
+
+    // Submit vers Apps Script (sans _origin / _ua)
+    form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        if (!validateStep(0) || !validateStep(1)) return;
+
+        // Honeypot
+        const hp = form.querySelector('input[name="website"]')?.value.trim();
+        if (hp) return;
+
+        const data = Object.fromEntries(new FormData(form));
+        if (data.telephone) data.telephone = String(data.telephone).replace(/\D/g,'');
+
+        submitBtn.disabled = true;
+        spinner.style.display = 'inline-block';
+        try{
+            await fetch(scriptURL, {
+                method:'POST',
+                mode:'no-cors',
+                headers:{ 'Content-Type':'text/plain;charset=utf-8' },
+                body: JSON.stringify(data)
+            });
+            form.reset();
+            document.querySelectorAll('.invalid').forEach(n=>n.classList.remove('invalid'));
+            successPanel.classList.add('show');
+            showStep(0);
+            successPanel.scrollIntoView({behavior:'smooth', block:'center'});
+        }catch(err){
+            alert('⚠️ Réseau indisponible. Vérifiez votre connexion.');
+        }finally{
+            submitBtn.disabled = false;
+            spinner.style.display = 'none';
+        }
+    });
+
+    // Init + ancres douces
+    showStep(0);
+    document.querySelectorAll('a[href="#formulaire-detaille"]').forEach(a=>{
+        a.addEventListener('click', (ev)=>{
+            ev.preventDefault();
+            document.getElementById('formulaire-detaille')?.scrollIntoView({behavior:'smooth'});
+        });
+    });
+</script>
+</body>
+</html>
